@@ -26,13 +26,12 @@ def find_sizes(root_element):
 def does_have_size(url, size):
     return size in find_sizes(parse_to_tree(load_page(url)))
 
-if sys.argv[1] == 'test': 
+if len(sys.argv) >= 2 and sys.argv[1] == 'test':
     test_url = 'http://www.zara.com/pl/pl/kobieta/spodnie/zobacz-wi%C4%99cej/%C5%BCakardowe-spodnie-typu-culotte-c733898p3956074.html'
-
     assert len(load_page(test_url)) > 0
     assert parse_to_tree(load_page(test_url)) is not None
     assert find_sizes(parse_to_tree(load_page(test_url))) is not None
-elif sys.argv[2]:
+elif len(sys.argv) >= 3 and sys.argv[2]:
     desired_size = sys.argv[2]
     print does_have_size(sys.argv[1], sys.argv[2])
 else:
