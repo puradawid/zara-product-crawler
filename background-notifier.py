@@ -5,11 +5,16 @@ import threading, time
 # Notification to make a notify call (probably depends on System used
 class NotificationHandler:
     def notify(self, message):
-        raise Error("Notification not implemented - probably generic class")
+        raise Exception("Notification not implemented - probably generic class")
 
 class PrintLine(NotificationHandler):
     def notify(self, message):
         print message + '\n'
+
+class LinuxNotify(NotificationHandler):
+    def notify(self, message):
+        import subprocess as sub
+        sub.Popen(['notify-send', '-t', '2', message])
 
 class Background:
 
@@ -40,16 +45,11 @@ class Background:
             time.sleep(self._sleep)
 
 # Testing
+def true():
+    return 'HYHYHY'
 
-counter = 0
+notifier = Background(predicate=true, notification_handler=LinuxNotify())
+notifier.start()
+input('Whatever')
+notifier.stop()
 
-def test_background():
-    counter = 0
-    def test():
-        return "Heyoo"
-
-    testing_object = Background(test)
-    testing_object.start()
-    testing_object.stop()
-
-test_background()
