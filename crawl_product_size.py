@@ -26,9 +26,11 @@ class DOMPageContent:
 # maps text from nodes directly
 class ZaraProduct:
     _sizes = None
+    _url = None
 
     def __init__(self, url):
         self._page_content = DOMPageContent(url)
+        self._url = url
 
     def sizes(self):
         if self._sizes is None:
@@ -39,15 +41,19 @@ class ZaraProduct:
     def have_size(self, size):
         return size in self.sizes()
 
+    def to_s(self):
+        return self._url
+
 # Command line handling
-if len(sys.argv) >= 2 and sys.argv[1] == 'test':
-    test_url = 'http://www.zara.com/pl/pl/kobieta/spodnie/zobacz-wi%C4%99cej/%C5%BCakardowe-spodnie-typu-culotte-c733898p3956074.html'
-    product = ZaraProduct(test_url)
-    assert product.sizes() is not None
-elif len(sys.argv) >= 3 and sys.argv[2]:
-    desired_size = sys.argv[2]
-    product = ZaraProduct(sys.argv[1]);
-    print product.have_size(sys.argv[2]);
-else:
-    product = ZaraProduct(sys.argv[1]);
-    print product.sizes();
+if __name__ == '__main__':
+    if len(sys.argv) >= 2 and sys.argv[1] == 'test':
+        test_url = 'http://www.zara.com/pl/pl/kobieta/spodnie/zobacz-wi%C4%99cej/%C5%BCakardowe-spodnie-typu-culotte-c733898p3956074.html'
+        product = ZaraProduct(test_url)
+        assert product.sizes() is not None
+    elif len(sys.argv) >= 3 and sys.argv[2]:
+        desired_size = sys.argv[2]
+        product = ZaraProduct(sys.argv[1]);
+        print product.have_size(sys.argv[2]);
+    else:
+        product = ZaraProduct(sys.argv[1]);
+        print product.sizes();

@@ -42,13 +42,13 @@ class Background:
         self._notification_handler.notify(msg)
 
     def _loop(self, stop):
-        print 'loop\n'
-        if stop.is_set(): 
+        if stop.is_set():
             return
         msg = self._predicate()
         if msg is not None:
             self._notify(msg)
         self._current_timer = threading.Timer(self._sleep, self._loop, (stop,)).start()
+
 counter = 1
 # Testing
 def test():
@@ -63,4 +63,5 @@ def test():
     print "Stop signal sent"
     notifier.stop()
 
-test()
+if __name__ == '__main__':
+    test()
