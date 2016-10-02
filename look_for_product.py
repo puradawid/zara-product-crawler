@@ -12,7 +12,11 @@ def create_prediction_process(product, size):
 import sys
 argv = sys.argv
 if len(argv) == 3:
-    background.Background(create_prediction_process(zara.ZaraProduct(argv[1]), argv[2]), notification_handler=background.LinuxNotify()).start();
+    notifier = background.Background(create_prediction_process(zara.ZaraProduct(argv[1]), argv[2]), notification_handler=background.LinuxNotify())
+    notifier.start()
+    raw_input("Click any key to stop this madness.")
+    notifier.stop()
+    print("Closing...")
 else:
     print """Usage: python look_for_product.py url size
     Where:
