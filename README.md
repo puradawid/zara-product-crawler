@@ -11,7 +11,6 @@ classic enumeration like XS, S, M, L, XL, XXL.
 Program should inform immediately about availability of product.
 
 # To be done:
-- no stop condition in background_product.py
 - support for linux notification (background_notifier.py)
 - support for balloontip.py (Windows feature)
 
