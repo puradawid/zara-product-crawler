@@ -10,6 +10,12 @@ classic enumeration like XS, S, M, L, XL, XXL.
 
 Program should inform immediately about availability of product.
 
+# Architecture
+* parser module - loads and parses markup to comon object of product
+* condition to check is it already done
+* periodically checker
+* sink for notification
+
 # To be done:
 - support for linux notification (background_notifier.py)
 - support for balloontip.py (Windows feature)
