@@ -16,6 +16,11 @@ Program should inform immediately about availability of product.
 * periodically checker
 * sink for notification
 
+## Running
+`bin/lookup` is a CLI executable that will check specific product by some ID (TODO: create that file). No values provided will run an interactive mode (asking for a URL or something else). 
+
+     bin/lookup ${id} ${firstName}=${firstValue}
+
 # To be done:
 - support for linux notification (background_notifier.py)
 - support for balloontip.py (Windows feature)
