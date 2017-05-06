@@ -22,6 +22,16 @@ class DOMPageContent:
         request.add_header('User-Agent', USER_AGENT_FAKE)
         return html.fromstring(urllib2.urlopen(request).read().decode("iso-8859-2"))
 
+class ZaraProductPage:
+    def __init__(self, htmlText):
+        self._sizes = html.fromstring(htmlText).read().cssselect('tr.product-size:not(.disabled) td.size-name')
+
+import unittest
+
+class ZaraProductPageTest(unittest.TestCase):
+    def test_creation(self):
+        ZaraProductPage("")
+
 # Wrapper class for a data storage and read - fetch all HTML page and looks for size nodes
 # maps text from nodes directly
 class ZaraProduct:
